@@ -92,4 +92,4 @@ client.on('message', message=> {
     }
 });
 
-client.login(TOKEN.BOT_TOKEN);
+client.login(proces.env.TOKEN);
