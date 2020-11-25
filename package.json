@@ -1,7 +1,7 @@
 {
-  "name": "Earthless bot",
+  "name": "earthless-bot",
   "version": "1",
-  "description": "Bot for discord server",
+  "description": "bot-for-discord-server",
   "engines": {
     "node": "14.x"
   },
