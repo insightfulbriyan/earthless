@@ -2,6 +2,8 @@ const { time, error } = require('console');
 const { S_IFCHR, SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } = require('constants');
 const Discord = require('discord.js');
 const CONFIG = require('./config.json');
+require('dotenv').config();
+
 
 function between(min, max) {  
     return Math.floor(
@@ -456,4 +458,4 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
 
 })
 
-client.login(CONFIG.BOT_TOKEN);
+client.login(process.env.TOKEN);
