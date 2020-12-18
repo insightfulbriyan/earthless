@@ -2,8 +2,6 @@ const { time, error } = require('console');
 const { S_IFCHR, SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } = require('constants');
 const Discord = require('discord.js');
 const CONFIG = require('./config.json');
-require('dotenv').config();
-
 
 function between(min, max) {  
     return Math.floor(
@@ -13,9 +11,9 @@ function between(min, max) {
   
 const client = new Discord.Client();
 client.on('ready', () => {
-  console.log('I am ready!');
+    console.log('I am ready!');
+    
 });
-
 
 
 var gtn_rndn = 0;
@@ -32,10 +30,10 @@ client.on('message', message => {
     else if (message.author == CONFIG.BOT_ID){
         return
     }
-
+/*
     else if (message.author.bot.valueOf()){
         return
-    }
+    }*/
     //HELP
     else if (message.content.startsWith('=help')){
         var cmd = message.content.split(' ')[1]
@@ -64,7 +62,9 @@ client.on('message', message => {
                     { name: 'Create role' ,value: 'usage: `=role create --[name] --[color hex code] --[position from bottom]` \ndescription: Creates a role with choosen name and color'},
                     { name: 'Give role' ,value: 'usage: `=role give {user mention} --{role ID}` \ndescription: Gives member specified role.'},
                     { name: 'Delete role' ,value: 'usage: `=role delete --{role ID}` \ndescription: Deletes a role from server.'},
-                    { name: 'Mute user' ,value: 'usage: `=mute {member mention}` \ndescription: Mutes user for 5 minutes.'}
+                    { name: 'Mute user' ,value: 'usage: `=mute {member mention}` \ndescription: Mutes user for 5 minutes.'},
+                    { name: 'Lockdown' ,value: 'usage: `=lock` \ndescription: Mutes the whole server until you undo it.'},
+                    { name: 'Unlockdown' ,value: 'usage: `=unlock` \ndescription: Unmutes the whole server after it was muted.'}
                 )
                 .setTimestamp();
             message.channel.send(help_mod)
@@ -257,7 +257,7 @@ client.on('message', message => {
 
 
     //NO YOU
-    else if (message.content.startsWith ('no u')){
+    else if (message.content.startsWith ('no u') || message.content.startsWith('No u')){
         message.channel.send('**no YOU**');
     }
 
@@ -354,8 +354,12 @@ client.on('message', message => {
         }*/
     }
 
-
-
+    else if(message.content.startsWith("=presence")){
+        client.user.setActivity(CONFIG.BOT_STATUS_STATUS, {
+            type: CONFIG.BOT_STATUS_TYPE,
+            url: CONFIG.BOT_STATUS_URL
+        });
+    }
 
 
 
@@ -395,16 +399,52 @@ client.on('message', message => {
                 var role2delete = message.content.split('--')[1]
                 message.guild.roles.resolve(role2delete).delete();
             }
+            
+        }
+    }
+    //LOCKDOWN ON
+    else if (message.content.startsWith('=lock')){
+        if (!message.member.hasPermission('MANAGE_ROLES')){
+            message.channel.send('**You don\'t have permission to lock server!**')
+        }
+        else {
+            message.guild.roles.resolve(CONFIG.LOCK_ROLE_ID).setPermissions(['READ_MESSAGE_HISTORY', 'VIEW_CHANNEL'])
+            message.channel.send('**All channels have been locked!**')
+        }
+    }
+    //LOCKDOWN ON
+    else if (message.content.startsWith('=unlock')){
+        if (!message.member.hasPermission('MANAGE_ROLES')){
+            message.channel.send('**You don\'t have permission to lock server!**')
+        }
+        else {
+            message.guild.roles.resolve(CONFIG.LOCK_ROLE_ID).setPermissions(['READ_MESSAGE_HISTORY', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'CONNECT', 'USE_EXTERNAL_EMOJIS']);
+            message.channel.send('**All channels are now unlocked!**')
+        }
+    }
+    //YAGPDB
+    else if (message.author == '204255221017214977'){
+        if (message.channel.id.valueOf() == '724598114471903328'){
+            const rndn = between(1, 7)
+            const dou = ['Never!', 'I\'m sure you do hehe', 'I do not, you?']
+            const message_for_yag = ['Oh, that\'s dumb!', message.content.toString() + 'blah blah blah', 'Stupid bot', 'RIDICULUS!', 'Arghh, come on!', '-topic', 'Are you sure?', 'I ban <@!204255221017214977>']
+            console.log(rndn)
+            if (rndn == 2){
+                if (message.content.startsWith('Do you')){
+                    message.channel.send(dou[between(0, 2)])
+                }
+                else {
+                    message.channel.send(message_for_yag[between(0, 7)])
+                }
+            }
         }
     }
 
-
     //BUMP TIMER
     for (let embed of message.embeds) {
-        console.log(embed.description);
         if (embed.title == 'DISBOARD: The Public Server List') {
             console.log('title');
-            if (embed.description[30] == 'B') {
+            if (embed.description.includes('Bump done')) {
                 message.channel.send('I\'ll remind you in 2 hours')
 
                 setTimeout(() => {message.channel.send('It\'s <@&759772228962353182>! Go to <#724598114882945183> and type `!d bump`');}, 7200000);
@@ -430,22 +470,20 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
     const bad_words = ['anal', 'anus', 'arse', 'ass', 'ballsack', 'balls' , 'bastard', 'bitch', 'biatch', 'bloody', 'blowjob', 'blow job', 'bollock', 'bollok', 'boner', 'boob', 'bugger', 'bum', 'butt', 'buttplug', 'clitoris', 'cock', 'coon', 'crap', 'cunt', 'damn', 'dick', 'dildo', 'dyke', 'fag', 'feck', 'fellate', 'fellatio', 'felching', 'fuck', 'f u c k', 'fudgepacker', 'fudge packer', 'flange', 'Goddamn', 'God damn', 'hell', 'homo', 'jerk', 'jizz', 'knobend', 'knob end', 'labia', 'lmao', 'lmfao', 'muff', 'nigger', 'nigga', 'omg', 'penis', 'piss', 'poop', 'prick', 'pube', 'pussy', 'queer', 'scrotum', 'sex', 'shit', 's hit', 'sh1t', 'slut', 'smegma', 'spunk', 'tit', 'tosser', 'turd', 'twat', 'vagina', 'wank', 'whore', 'wtf']
     const alphabet = ['q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p', 'y', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     var old_name = oldMember;
-    var user_name = 'a' + newMember.displayName.toString()
+    var user_name = newMember.displayName
     console.log(user_name)
     let letter_count = 0;
     let bad_word_count = 0;
     for (let i of alphabet){
-        console.log(i)
         if(user_name.includes(i)){
             letter_count = letter_count + 1;
-            console.log('test')
+            console.log(i)
         }
     }
     for (let i of bad_words){
-        console.log(i)
         if(user_name.includes(i)){
             bad_word_count = bad_word_count + 1;
-            console.log('test')
+            console.log(i)
         }
     }
 
@@ -458,4 +496,5 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
 
 })
 
-client.login(process.env.TOKEN);
+
+client.login(CONFIG.BOT_TOKEN);
