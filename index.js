@@ -12,7 +12,10 @@ function between(min, max) {
 const client = new Discord.Client();
 client.on('ready', () => {
     console.log('I am ready!');
-    
+    client.user.setActivity(CONFIG.BOT_STATUS_STATUS, {
+        type: CONFIG.BOT_STATUS_TYPE,
+        url: CONFIG.BOT_STATUS_URL
+     });
 });
 
 
@@ -236,9 +239,9 @@ client.on('message', message => {
 
     //SAY
     else if (message.content.startsWith('=say') && message.channel.id.valueOf() == CONFIG.SAY_FROM_ID){
-        const channel = client.channels.cache.find(channel => channel.name === CONFIG.SAY_TO_NAME)
+        const send_channel = client.channels.cache.find(channel => channel.id === CONFIG.SAY_TO_ID)
         message.channel.send('Your message has been sent!')
-        channel.send(message.content.split('=say ')[1])
+        send_channel.send(message.content.split('=say ')[1])
     }
 
 
@@ -465,7 +468,7 @@ client.on("guildMemberAdd", member => {
 });
 
 
-
+/*
 client.on('guildMemberUpdate', (oldMember, newMember) => {
     const bad_words = ['anal', 'anus', 'arse', 'ass', 'ballsack', 'balls' , 'bastard', 'bitch', 'biatch', 'bloody', 'blowjob', 'blow job', 'bollock', 'bollok', 'boner', 'boob', 'bugger', 'bum', 'butt', 'buttplug', 'clitoris', 'cock', 'coon', 'crap', 'cunt', 'damn', 'dick', 'dildo', 'dyke', 'fag', 'feck', 'fellate', 'fellatio', 'felching', 'fuck', 'f u c k', 'fudgepacker', 'fudge packer', 'flange', 'Goddamn', 'God damn', 'hell', 'homo', 'jerk', 'jizz', 'knobend', 'knob end', 'labia', 'lmao', 'lmfao', 'muff', 'nigger', 'nigga', 'omg', 'penis', 'piss', 'poop', 'prick', 'pube', 'pussy', 'queer', 'scrotum', 'sex', 'shit', 's hit', 'sh1t', 'slut', 'smegma', 'spunk', 'tit', 'tosser', 'turd', 'twat', 'vagina', 'wank', 'whore', 'wtf']
     const alphabet = ['q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p', 'y', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
@@ -494,7 +497,7 @@ client.on('guildMemberUpdate', (oldMember, newMember) => {
         console.log('nickname changed');
     }
 
-})
+})*/
 
 
 client.login(CONFIG.BOT_TOKEN);
