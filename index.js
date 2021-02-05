@@ -47,7 +47,8 @@ client.on('message', message => {
                 .setDescription('All commands')
                 .setThumbnail(CONFIG.EMB_THUMB_URI)
                 .addFields(
-                    { name: 'Kill',value: 'usage: `=kill {target}` \ndescription: Funny command!' },
+                    { name: 'Kill',value: 'usage: `=kill {your victim}` \ndescription: Funny command!' },
+                    { name: 'Revive', value: 'usage `=revive {target}` \ndescription: Revives someone from dead.' },
                     { name: 'Eat',value: 'usage: `=eat ` \ndescription: Gives you food!' },
                     { name: 'Guess the number',value: 'usage: `=gtn` \ndescription:  Plays easy guess the number game with you.'},
                     { name: '8ball', value: 'usage: `=8b {question}` \ndescription: Plays 8ball with you.'}
@@ -101,6 +102,7 @@ client.on('message', message => {
                     { name: 'Utilities', value: 'usage: `=help util`' },
                     { name: 'Moderation', value: 'usage: `=help mod`' }
                 )
+                .addField('** **', `[Github link](https://github.com/Akaj-lab/earthless/tree/v1-test)`)
                 .setTimestamp();
             message.channel.send(help_cat);
         }
@@ -143,7 +145,7 @@ client.on('message', message => {
         const random_str = ['crimes against humanity', 'stealing my money', 'bringing pizza to party', 'being dumb', 'being a good person', 'helping mum with chores', 'not eating for 48 hours straight', 'for for for for', 'not washing their teeth', 'compleating their homework', 'peeing on the floor', 'allowing their parents to visit their room', 'killing someone else', 'being a jerk', 'crying like a little baby', 'eating all the food', 'studying right before test', 'bean', 'getting a F', 'using the command', 'changing F to A on test', 'lying']; 
         message_str = message.content.split('=kill ')[1];
         const killer = ['Banana', 'Your mum', 'YagPdb', 'I', 'You', 'Burglars', 'Donald Trump', 'The US government', 'Chinese government', 'Kim Jong Un', 'Somebody', 'Drunk driver', 'Maths', 'String theory', 'Teacher', 'Unknown murderer', ':alien: UFO', 'A book', 'Pencil', 'Knife', 'Heat', 'Water', 'Spy', 'Your brother', 'Teethbrush', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'LD50 = 0mg/kg of your bodyweight']
-        const rndn = between(0, 4);
+        const rndn = between(0, 10);
         if (message.content.includes('@everyone')){
             message.channel.send(`**${killer[between(0, 26)]}** killed ${message.author} for trying to ping everyone. You won't trick me, you little bean.`);
             return;
@@ -185,7 +187,7 @@ client.on('message', message => {
 
     }
 
-    //MEMBERS
+    //SERVERINFO
     else if (message.content.startsWith('=serverinfo')){
         var members = message.guild.memberCount;
         var roles = message.guild.roles.highest.position
@@ -277,7 +279,7 @@ client.on('message', message => {
         const code_embed = new Discord.MessageEmbed()
             .setColor(CONFIG.DEF_EMB_COL)
             .addFields(
-                { name: 'Secret code', value: '10 = :) \n29 = No \n44 = hmm \n55 = yes \n56 = lol \n59 = lmao \n71 = xd \n90 = :('}
+                { name: 'Secret code', value: '10 = :) \n29 = No \n41 = yay \n44 = hmm \n45 = bruh \n55 = yes \n56 = lol \n59 = lmao \n71 = xd \n90 = :('}
             )
             .setTimestamp();
         message.channel.send(code_embed);
@@ -357,6 +359,7 @@ client.on('message', message => {
         }*/
     }
 
+    //PRESENCE
     else if(message.content.startsWith("=presence")){
         client.user.setActivity(CONFIG.BOT_STATUS_STATUS, {
             type: CONFIG.BOT_STATUS_TYPE,
@@ -405,6 +408,10 @@ client.on('message', message => {
             
         }
     }
+
+
+
+
     //LOCKDOWN ON
     else if (message.content.startsWith('=lock')){
         if (!message.member.hasPermission('MANAGE_ROLES')){
@@ -415,6 +422,10 @@ client.on('message', message => {
             message.channel.send('**All channels have been locked!**')
         }
     }
+
+
+
+
     //LOCKDOWN ON
     else if (message.content.startsWith('=unlock')){
         if (!message.member.hasPermission('MANAGE_ROLES')){
@@ -425,6 +436,10 @@ client.on('message', message => {
             message.channel.send('**All channels are now unlocked!**')
         }
     }
+
+
+
+
     //YAGPDB
     else if (message.author == '204255221017214977'){
         if (message.channel.id.valueOf() == '724598114471903328'){
@@ -443,6 +458,62 @@ client.on('message', message => {
         }
     }
 
+
+
+
+    //HELLO IT'S ME
+    else if (message.content.includes('744623798703226955')){
+        message.channel.send('Hello, it\'s me, Earthless discord bot! :smile:')
+    }
+
+
+
+
+    //REVIVE
+    else if (message.content.startsWith('=revive')){
+        if (message.content.split('=revive ')[1] == 'me'){
+            message.channel.send('You were revived.')
+        }
+        else {
+            message.channel.send('**' + message.content.split('=revive ')[1] + '** was revived.');
+        }
+        
+    }
+
+
+
+
+    //HELLO
+    else if ((message.content.startsWith('hi') || message.content.startsWith('Hi') || message.content.startsWith('Hello') || message.content.startsWith('hello')) && message.channel == ('724598114471903328')){
+        var rndn = between(0, 5)
+        console.log(rndn)
+        if (rndn == 1){
+            message.channel.send(`Hello ${message.author}!`)
+        }
+    }
+
+
+
+
+    //TOPICS
+    /*else if (message.content == '=topic'){
+        var rndn = between(0, 26)
+        const topic = ['What do you think, where does a black hole lead?', 'Do you believe in god, why oy why not?', 'Which is your all time favourite quote and why?', ' Which is the best discovery by humans?', 'Which is your all time favourite scientist?', 'Which is your favourite astronomical object?', 'Define what is life?', 'Which is better astronomy or astrology?', 'Can you share the best photo you took of nature?', 'Do you like school? Why or why not?', 'Which is the hardest math equation that you have solved?', 'Which is your favourite star in the night sky?', 'What was the moment where you felt most motivated?', 'How will humans as a species go extinct?', 'If you could teach everyone in the world one concept, what concept would have the biggest positive impact on humanity?', 'Which is your favourite space exploration mission?', 'Which planet do you think in our solar system has most chances of life existing on it?', 'What do you believe in: luck or hard work?', 'Are mathematicians the smartest people on Earth? Why or why not?', 'What is the best path to find truth; science, math, art, philosophy, or something else?', 'What do you think your future self will remember about you now?', 'Would a government run with algorithms, A.I., and statistics be better or worse than the government we have now?', 'What scientific breakthrough would have the biggest effect on humanity?', 'Has the invention of the atomic bomb made the world a more peaceful place?', 'If emotions are the product of biochemical reactions, then in the future we will be theoretically able to control them. If we could control emotions through technology, should we?', 'Is there a limit to what humans can create through technology and science?']
+        message.channel.send(topic[rndn])
+        console.log(rndn)
+    }*/
+
+    //SHUTDOWN
+    else if ((message.author == CONFIG.NEONIE_ID || message.author == CONFIG.NASA_ID) && message.content.startsWith('=sd')){
+        message.channel.send('Shutting down...');
+        console.log(t)
+
+    }
+
+
+
+
+    
     //BUMP TIMER
     for (let embed of message.embeds) {
         if (embed.title == 'DISBOARD: The Public Server List') {
