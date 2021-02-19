@@ -25,9 +25,9 @@
     "BOT_STATUS_STATUS": "=help",
     "LOCK_ROLE_ID": "724598113817591884",
     "chat": {
-        "url": "http://api.brainshop.ai/get?bid=154913&key=T0nZutKJGJSeQZAU&uid=[uid]&msg=[msg]",
-        "bid": "154913",
-        "key": "T0nZutKJGJSeQZAU",
+        "url": " ",
+        "bid": " ",
+        "key": " ",
         "uid": "chatbot"
     }
 }
