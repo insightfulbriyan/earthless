@@ -271,7 +271,7 @@ client.on('message', message => {
 
 
     //AUTO PUBLISH
-    else if (message.channel.id.toString() == CONFIG.PUB_1_RSS || message.channel.id.toString() == CONFIG.PUB_2_APOD || message.channel.id.toString() == CONFIG.PUP_3_YT) {
+    else if (message.channel.id.toString() == CONFIG.PUB_1_RSS || message.channel.id.toString() == CONFIG.PUB_2_APOD || message.channel.id.toString() == CONFIG.PUP_3_YT || message.channel.id.toString() == '762221693846421514') {
         message.crosspost();
     }
 
