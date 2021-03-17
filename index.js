@@ -52,7 +52,8 @@ client.on('message', message => {
                     { name: 'Revive', value: 'usage `=revive {target}` \ndescription: Revives someone from dead.' },
                     { name: 'Eat',value: 'usage: `=eat ` \ndescription: Gives you food!' },
                     { name: 'Guess the number',value: 'usage: `=gtn` \ndescription:  Plays easy guess the number game with you.'},
-                    { name: '8ball', value: 'usage: `=8b {question}` \ndescription: Plays 8ball with you.'}
+                    { name: '8ball', value: 'usage: `=8b {question}` \ndescription: Plays 8ball with you.'},
+                    { name: 'Percentage',value: 'usage: `=chance {question}` \ndescription:  Tells you the chance of given event happening.'}
                 )
                 .setTimestamp();
             message.channel.send(help_fun)
@@ -357,6 +358,16 @@ client.on('message', message => {
 
 
 
+    //CHANCE
+    else if (message.content.startsWith('=chance')){
+        var percentage = between(0, 100);
+        message.channel.send('There is ' + percentage + '% chance of that happening.')
+
+    }
+
+
+
+
     //POLL
     else if (message.content.startsWith('POLL')){
         let poll = message.content.split('\n')
@@ -479,7 +490,7 @@ client.on('message', message => {
 
 
     //HELLO
-    else if ((message.content.startsWith('hi') || message.content.startsWith('Hi') || message.content.startsWith('Hello') || message.content.startsWith('hello')) && message.channel == ('724598114471903328')){
+    else if ((message.content.startsWith('hi ') || message.content.startsWith('Hi ') || message.content.startsWith('Hello ') || message.content.startsWith('hello ')) && message.channel == ('724598114471903328')){
         var rndn = between(0, 5)
         console.log(rndn)
         if (rndn == 1){
