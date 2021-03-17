@@ -27,7 +27,6 @@ var tries = 0;
 var start_channel = 0;
 
 client.on('message', message => {
-    
     if (!message.guild){
         return
     }
@@ -35,10 +34,10 @@ client.on('message', message => {
     else if (message.author.bot){
         return
     }
-/*
-    else if (message.author.bot.valueOf()){
-        return
-    }*/
+
+
+
+
     //HELP
     else if (message.content.startsWith('=help')){
         var cmd = message.content.split(' ')[1]
@@ -58,6 +57,7 @@ client.on('message', message => {
                 .setTimestamp();
             message.channel.send(help_fun)
         }
+
         else if (cmd == 'moderation' || cmd == 'mod'){
             const help_mod = new Discord.MessageEmbed()
                 .setColor(CONFIG.DEF_EMB_COL)
@@ -75,6 +75,7 @@ client.on('message', message => {
                 .setTimestamp();
             message.channel.send(help_mod)
         }
+
         else if (cmd == 'utilities' || cmd == 'util'){
             const help_info = new Discord.MessageEmbed()
                 .setColor(CONFIG.DEF_EMB_COL)
@@ -92,6 +93,7 @@ client.on('message', message => {
                 .setTimestamp();
             message.channel.send(help_info)
         }
+
         else {
             const help_cat = new Discord.MessageEmbed()
                 .setColor(CONFIG.DEF_EMB_COL)
@@ -100,7 +102,15 @@ client.on('message', message => {
                 .setThumbnail(CONFIG.EMB_THUMB_URI)
                 .addFields(
                     { name: 'How to use', value : '{} = required, \n[] = optional \n\n\n'},
-                    { name: 'Fun', value: 'usage: `=help fun`' },
+              
+
+
+
+
+
+
+
+      { name: 'Fun', value: 'usage: `=help fun`' },
                     { name: 'Utilities', value: 'usage: `=help util`' },
                     { name: 'Moderation', value: 'usage: `=help mod`' }
                 )
@@ -110,6 +120,8 @@ client.on('message', message => {
         }
 
     }
+
+
     
 
     //PING
@@ -161,10 +173,12 @@ client.on('message', message => {
 
 
 
+
     //NAME
     else if (message.content == '=name'){
         message.channel.send(`authotr <@${message.author}>`);
     }
+
 
 
 
@@ -183,11 +197,15 @@ client.on('message', message => {
 
 
 
+
     //APPLE
     else if (message.content.includes('apple')){
         message.react('🍎');
 
     }
+
+
+
 
     //SERVERINFO
     else if (message.content.startsWith('=serverinfo')){
@@ -209,10 +227,6 @@ client.on('message', message => {
     }
 
 
-    //TEST NEW USER
-    else if (message.content.startsWith('=test')){
-        client.emit("guildMemberAdd", message.member);
-    }
 
 
     //GUESS THE NUMBER
@@ -241,6 +255,8 @@ client.on('message', message => {
     }
 
 
+
+
     //SAY
     else if (message.content.startsWith('=say') && message.channel.id.valueOf() == CONFIG.SAY_FROM_ID){
         const send_channel = client.channels.cache.find(channel => channel.id === CONFIG.SAY_TO_ID)
@@ -263,6 +279,8 @@ client.on('message', message => {
     }
 
 
+
+
     //NO YOU
     else if (message.content.startsWith ('no u') || message.content.startsWith('No u')){
         message.channel.send('**no YOU**');
@@ -270,10 +288,13 @@ client.on('message', message => {
 
 
 
+
     //AUTO PUBLISH
-    else if (message.channel.id.toString() == CONFIG.PUB_1_RSS || message.channel.id.toString() == CONFIG.PUB_2_APOD || message.channel.id.toString() == CONFIG.PUP_3_YT) {
+    else if (message.channel.id.toString() == CONFIG.PUB_1_RSS || message.channel.id.toString() == CONFIG.PUB_2_APOD || message.channel.id.toString() == CONFIG.PUP_3_YT || message.channel.id.toString() == '762221693846421514') {
         message.crosspost();
     }
+
+
 
 
     //SECRET LANGUAGE
@@ -288,6 +309,8 @@ client.on('message', message => {
     }
 
 
+
+
     //8 BALL
     else if (message.content.startsWith('=8b')){
         var answer_rnd = ['Yes!', 'No', 'Certainly', 'No way!', between(0, 100) + '% yes', between(0, 100) + '% no', 'No idea, google it', 'DATABASE_ERROR', 'I don\'t have access to data', 'i DON\'T THINK SO']
@@ -296,16 +319,18 @@ client.on('message', message => {
         if (message.content.toString().length > CONFIG.BB_TLDR && between(0, CONFIG.BB_TLDR_PROB) > CONFIG.BB_TLDR_PROB_VALUE){
             message.channel.send('TL:DR')
         }
+
         else if (rndn_8b == 9){
             message.channel.send(answer_rnd[9])
             setTimeout(() => {(auth).send('sry caps'); }, CONFIG.BB_CAPS);
         }
+
         else{
             message.channel.send(answer_rnd[rndn_8b]);
         }
-        
-        
     }
+
+
 
 
     //MUTE 
@@ -314,6 +339,8 @@ client.on('message', message => {
         setTimeout(() => {message.mentions.members.first().roles.remove(CONFIG.MUTE_ID); }, CONFIG.MUTE_TIME)
         message.channel.send('**' + message.mentions.members.first().displayName.toString() + '** has been muted for 5 minutes.')
     }
+
+
 
 
     //GET ID
@@ -329,10 +356,13 @@ client.on('message', message => {
                 if_count++;
             }
         }
+
         if(if_count != 1){
             message.channel.send(`ID of mentioned user is **${messaage}**`);
         }
     }
+
+
 
 
     //POLL
@@ -344,6 +374,7 @@ client.on('message', message => {
         if (pollength > 21){
             message.channel.send('your poll has to many options')
         }
+
         else{
             console.log('abd')
             let i = 1;
@@ -352,21 +383,7 @@ client.on('message', message => {
                     .catch(error)
                 i++
             }
-
         }
-        /*
-        for (let i of poll){
-            
-            console.log(i)
-        }*/
-    }
-
-    //PRESENCE
-    else if(message.content.startsWith("=presence")){
-        client.user.setActivity(CONFIG.BOT_STATUS_STATUS, {
-            type: CONFIG.BOT_STATUS_TYPE,
-            url: CONFIG.BOT_STATUS_URL
-        });
     }
 
 
@@ -377,6 +394,7 @@ client.on('message', message => {
         if (!message.member.hasPermission('MANAGE_ROLES')){
             message.channel.send('**You don\'t have permission to manage roles!**')
         }
+
         else{
             var comd = message.content.split(' ')[1]
             //CREATE
@@ -394,6 +412,7 @@ client.on('message', message => {
                 message.channel.send('**Created role: **' + role_name)
                 console.log(`role created ${role_name}`)
             }
+
             //GIVE
             else if (comd == 'give'){
                 var role2give = message.content.split('--')[1]
@@ -402,6 +421,7 @@ client.on('message', message => {
 
 
             }
+
             //DELETE
             else if (comd == 'delete'){
                 var role2delete = message.content.split('--')[1]
@@ -419,6 +439,7 @@ client.on('message', message => {
         if (!message.member.hasPermission('MANAGE_ROLES')){
             message.channel.send('**You don\'t have permission to lock server!**')
         }
+
         else {
             message.guild.roles.resolve(CONFIG.LOCK_ROLE_ID).setPermissions(['READ_MESSAGE_HISTORY', 'VIEW_CHANNEL'])
             message.channel.send('**All channels have been locked!**')
@@ -428,35 +449,15 @@ client.on('message', message => {
 
 
 
-    //LOCKDOWN ON
+    //LOCKDOWN OFF  
     else if (message.content.startsWith('=unlock')){
         if (!message.member.hasPermission('MANAGE_ROLES')){
             message.channel.send('**You don\'t have permission to lock server!**')
         }
+
         else {
             message.guild.roles.resolve(CONFIG.LOCK_ROLE_ID).setPermissions(['READ_MESSAGE_HISTORY', 'VIEW_CHANNEL', 'SEND_MESSAGES', 'CREATE_INSTANT_INVITE', 'CHANGE_NICKNAME', 'CONNECT', 'USE_EXTERNAL_EMOJIS']);
             message.channel.send('**All channels are now unlocked!**')
-        }
-    }
-
-
-
-
-    //YAGPDB
-    else if (message.author == '204255221017214977'){
-        if (message.channel.id.valueOf() == '724598114471903328'){
-            const rndn = between(1, 7)
-            const dou = ['Never!', 'I\'m sure you do hehe', 'I do not, you?']
-            const message_for_yag = ['Oh, that\'s dumb!', message.content.toString() + 'blah blah blah', 'Stupid bot', 'RIDICULUS!', 'Arghh, come on!', '-topic', 'Are you sure?', 'I ban <@!204255221017214977>']
-            console.log(rndn)
-            if (rndn == 2){
-                if (message.content.startsWith('Do you')){
-                    message.channel.send(dou[between(0, 2)])
-                }
-                else {
-                    message.channel.send(message_for_yag[between(0, 7)])
-                }
-            }
         }
     }
 
@@ -495,15 +496,7 @@ client.on('message', message => {
     }
 
 
-
-
-    //TOPICS
-    /*else if (message.content == '=topic'){
-        var rndn = between(0, 26)
-        const topic = ['What do you think, where does a black hole lead?', 'Do you believe in god, why oy why not?', 'Which is your all time favourite quote and why?', ' Which is the best discovery by humans?', 'Which is your all time favourite scientist?', 'Which is your favourite astronomical object?', 'Define what is life?', 'Which is better astronomy or astrology?', 'Can you share the best photo you took of nature?', 'Do you like school? Why or why not?', 'Which is the hardest math equation that you have solved?', 'Which is your favourite star in the night sky?', 'What was the moment where you felt most motivated?', 'How will humans as a species go extinct?', 'If you could teach everyone in the world one concept, what concept would have the biggest positive impact on humanity?', 'Which is your favourite space exploration mission?', 'Which planet do you think in our solar system has most chances of life existing on it?', 'What do you believe in: luck or hard work?', 'Are mathematicians the smartest people on Earth? Why or why not?', 'What is the best path to find truth; science, math, art, philosophy, or something else?', 'What do you think your future self will remember about you now?', 'Would a government run with algorithms, A.I., and statistics be better or worse than the government we have now?', 'What scientific breakthrough would have the biggest effect on humanity?', 'Has the invention of the atomic bomb made the world a morlace?', 'If emotions are the product of biochemical reactions, then in the future we will be theoretically able to control them. If we could control emotions through technology, should we?', 'Is there a limit to what humans can create through technology and science?']
-        message.channel.send(topic[rndn])
-        //console.log(rndn)
-    }*/
+    
 
     //SHUTDOWN
     else if ((message.author == CONFIG.NEONIE_ID || message.author == CONFIG.NASA_ID) && message.content.startsWith('=sd')){
@@ -514,7 +507,8 @@ client.on('message', message => {
 
 
 
-    //CHATBOTto
+
+    //CHATBOT
     else if (message.channel.id.toString() == CONFIG.AI_ID) {
         if(message.author.bot) return;
         client.util.handleTalk(message);
@@ -529,55 +523,13 @@ client.on('message', message => {
             console.log('title');
             if (embed.description.includes('Bump done')) {
                 message.channel.send('I\'ll remind you in 2 hours')
-
                 setTimeout(() => {message.channel.send('It\'s <@&759772228962353182>! Go to <#724598114882945183> and type `!d bump`');}, 7200000);
             }
         }
     }
-
 });
 
 
-
-//WELCOME
-client.on("guildMemberAdd", member => {
-    const welcome = `**Hello <@${member.id}>, welcome to Earthless!** \nCheck out the <#757190077020504085> and other info channels. If you want to **partner**, DM one of our @Partnership Managers (<@!714099174353797131>, <@!525126007330570259>). If you need any **help**, ping one of out moderators in chat or send them a DM. Please keep sciecne topics in **dedicated channels** and other topics in <#724598114471903328>. \n**Thank you for joining!**`
-    member.createDM();
-    member.send(welcome);
-
-});
-
-
-/*
-client.on('guildMemberUpdate', (oldMember, newMember) => {
-    const bad_words = ['anal', 'anus', 'arse', 'ass', 'ballsack', 'balls' , 'bastard', 'bitch', 'biatch', 'bloody', 'blowjob', 'blow job', 'bollock', 'bollok', 'boner', 'boob', 'bugger', 'bum', 'butt', 'buttplug', 'clitoris', 'cock', 'coon', 'crap', 'cunt', 'damn', 'dick', 'dildo', 'dyke', 'fag', 'feck', 'fellate', 'fellatio', 'felching', 'fuck', 'f u c k', 'fudgepacker', 'fudge packer', 'flange', 'Goddamn', 'God damn', 'hell', 'homo', 'jerk', 'jizz', 'knobend', 'knob end', 'labia', 'lmao', 'lmfao', 'muff', 'nigger', 'nigga', 'omg', 'penis', 'piss', 'poop', 'prick', 'pube', 'pussy', 'queer', 'scrotum', 'sex', 'shit', 's hit', 'sh1t', 'slut', 'smegma', 'spunk', 'tit', 'tosser', 'turd', 'twat', 'vagina', 'wank', 'whore', 'wtf']
-    const alphabet = ['q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p', 'y', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-    var old_name = oldMember;
-    var user_name = newMember.displayName
-    console.log(user_name)
-    let letter_count = 0;
-    let bad_word_count = 0;
-    for (let i of alphabet){
-        if(user_name.includes(i)){
-            letter_count = letter_count + 1;
-            console.log(i)
-        }
-    }
-    for (let i of bad_words){
-        if(user_name.includes(i)){
-            bad_word_count = bad_word_count + 1;
-            console.log(i)
-        }
-    }
-
-    if (bad_word_count > CONFIG.NICK_BAR_WRD_MAX || letter_count < CONFIG.NICK_ASCII_MIN){
-        newMember.setNickname(CONFIG.MOD_NICK_NICK);
-    }
-    else {
-        console.log('nickname changed');
-    }
-
-})*/
 
 
 client.login(CONFIG.BOT_TOKEN);
