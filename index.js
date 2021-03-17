@@ -102,19 +102,11 @@ client.on('message', message => {
                 .setThumbnail(CONFIG.EMB_THUMB_URI)
                 .addFields(
                     { name: 'How to use', value : '{} = required, \n[] = optional \n\n\n'},
-              
-
-
-
-
-
-
-
-      { name: 'Fun', value: 'usage: `=help fun`' },
+                    { name: 'Fun', value: 'usage: `=help fun`' },
                     { name: 'Utilities', value: 'usage: `=help util`' },
                     { name: 'Moderation', value: 'usage: `=help mod`' }
                 )
-                .addField('** **', `[Github link](https://github.com/Akaj-lab/earthless/tree/v1-test)`)
+                .addField('** **', `[Github link](https://github.com/Akaj-lab/earthless)`)
                 .setTimestamp();
             message.channel.send(help_cat);
         }
