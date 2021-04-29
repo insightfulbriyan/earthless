@@ -30,5 +30,6 @@
         "key": "T0nZutKJGJSeQZAU",
         "uid": "chatbot"
     },
-    "MASS_BAN_PERMISSIONS": "BAN_MEMBERS"
+    "MASS_BAN_PERMISSIONS": "BAN_MEMBERS",
+    "MASS_BAN_REAON": "Becuse"
 }

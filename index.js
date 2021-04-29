@@ -523,7 +523,7 @@ client.on('message', message => {
         list = message.content.split(' ');
         list.shift();
         for (let user of list) {
-            message.guild.members.ban(user)
+            message.guild.members.ban(user, {reason: CONFIG.MASS_BAN_REASON})
                 .then(console.log(user + ' was banned'))
                 .catch(err => console.log((err + ' Couldn\'t ban.')));
         }
