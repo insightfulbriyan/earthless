@@ -1,0 +1,9 @@
+{
+  "name": "earthless",
+  "version": "1.0.0",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "request-promise-native": "^1.0.9",
+    "request": "^2.88.2"
+  }
+}

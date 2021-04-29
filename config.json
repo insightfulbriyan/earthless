@@ -1,4 +1,4 @@
-{"BOT_TOKEN":"idiot",
+{"BOT_TOKEN":"idiots",
     "BOT_ID":"744623798703226955",
     "DEF_EMB_COL":"#0051ff",
     "EMB_THUMB_URI":"https://cdn.discordapp.com/attachments/724598114471903328/744475859536052285/tesrresressuper.jpg",
@@ -29,5 +29,6 @@
         "bid": "154913",
         "key": "T0nZutKJGJSeQZAU",
         "uid": "chatbot"
-    }
+    },
+    "MASS_BAN_PERMISSIONS": "BAN_MEMBERS"
 }

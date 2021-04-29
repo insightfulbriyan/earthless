@@ -1,5 +1,3 @@
-const { time, error } = require('console');
-const { S_IFCHR, SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } = require('constants');
 const Discord = require('discord.js');
 const CONFIG = require('./config.json');
 
@@ -515,6 +513,21 @@ client.on('message', message => {
     else if (message.channel.id.toString() == CONFIG.AI_ID) {
         if(message.author.bot) return;
         client.util.handleTalk(message);
+    }
+
+
+
+
+    //MASS BAN
+    else if (message.content.startsWith("=mass") && message.member.hasPermission(CONFIG.MASS_BAN_PERMISSIONS)){
+        list = message.content.split(' ');
+        list.shift();
+        for (let user of list) {
+            message.guild.members.ban(user)
+                .then(console.log(user + ' was banned'))
+                .catch(err => console.log((err + ' Couldn\'t ban.')));
+        }
+        message.channel.send('Done');
     }
 
 
