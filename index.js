@@ -1,9 +1,11 @@
 const Discord = require('discord.js');
 const CONFIG = require('./config.json');
+const exec = require('child_process').exec;
+var io = require('@pm2/io');
 
 function between(min, max) {  
     return Math.floor(
-      Math.random() * (max - min) + min
+      Math.random() * (max - min + 1) + min
     );
 }
 
@@ -544,6 +546,41 @@ client.on('message', message => {
         }
     }
 });
+
+
+
+
+var histogram = io.histogram({
+    name: 'temp',
+    measurment: 'mean'
+})
+
+const temp = io.metric({
+    name: 'Temp',
+    id: 'app/realtime/users'
+})
+
+
+
+
+function runCommand(command) {
+    return new Promise((resolve, reject) => {
+        exec(command, (err, stdout, stderr) => {
+            if(err) reject(err);
+            else resolve(stdout);
+        })
+    })
+}
+
+
+
+
+setInterval(async () => {
+    let value = await runCommand('sudo vcgencmd measure_temp');
+    value = value.split('=')[1].split("'")[0]
+    temp.set(value + "°C");
+    histogram.update(parseInt(value) || 0);
+}, 1000);
 
 
 
