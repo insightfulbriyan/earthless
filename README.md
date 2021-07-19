@@ -3,7 +3,7 @@
 **Earthless** is Discord bot, that's specifically created for Earthless discord servr. [Invite.](https://discord.gg/9gD293WjHs)
 
 ## Installing
-To start sing the bot:
+To start using the bot:
 1. Install [Node.js](https://nodejs.org/en/download/)
 2. Clone reportesory
 3. Run `npm install` in the folder you just installed.
