@@ -1,5 +1,6 @@
 config_test.json
 config_bot.json
 in2.js
-modules
+node_modules
 ./idea
+package-lock.json

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const CONFIG = require('./config.json');
 const exec = require('child_process').exec;
-var io = require('@pm2/io');
+//var io = require('@pm2/io');
 
 function between(min, max) {  
     return Math.floor(
@@ -31,8 +31,16 @@ client.on('message', message => {
         return
     }
 
-    else if (message.author.bot){
+    else if (message.author.id == '744623798703226955'){
         return
+    }
+
+
+
+
+    //EVERYONE
+    else if ((message.content.includes("@everyone")||message.content.includes('<@&724598113817591884>')) && !message.member.hasPermission('MENTION_EVERYONE')){
+        message.channel.send("Do not try to mention everyone >:O")
     }
 
 
@@ -548,7 +556,7 @@ client.on('message', message => {
 });
 
 
-
+/*
 
 var histogram = io.histogram({
     name: 'temp',
@@ -583,6 +591,6 @@ setInterval(async () => {
 }, 1000);
 
 
-
+*/
 
 client.login(CONFIG.BOT_TOKEN);
