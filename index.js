@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const CONFIG = require('./config.json');
 const exec = require('child_process').exec;
-//var io = require('@pm2/io');
+var io = require('@pm2/io');
 
 function between(min, max) {  
     return Math.floor(
@@ -556,7 +556,7 @@ client.on('message', message => {
 });
 
 
-/*
+
 
 var histogram = io.histogram({
     name: 'temp',
@@ -591,6 +591,5 @@ setInterval(async () => {
 }, 1000);
 
 
-*/
 
 client.login(CONFIG.BOT_TOKEN);
