@@ -202,7 +202,7 @@ client.on('message', message => {
 
 
     //APPLE
-    else if (message.content.includes('apple')) {
+    else if (message.content.includes('apple') || message.content.includes('orange')) {
         message.react('🍎');
 
     }
