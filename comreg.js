@@ -61,7 +61,7 @@ const commands = [/*
     new SlashCommandBuilder()
         .setName("getid")
         .setDescription("Tells you id")
-        .addStringOption(option => option.setName("mantionable").setRequired(true).setDescription("What you wanna get id of")),
+        .addStringOption(option => option.setName("mentionable").setRequired(true).setDescription("What you wanna get id of")),
     //chance
     new SlashCommandBuilder()
         .setName("chance")
