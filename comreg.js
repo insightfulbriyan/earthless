@@ -120,7 +120,7 @@ const rest = new REST({ version: "9" }).setToken(CONFIG.BOT_TOKEN);
         console.log("Started refreshing application (/) commands.");
 
         console.log(commands);
-        await rest.put(idiot
+        await rest.put(
             Routes.applicationGuildCommands('744623798703226955', '724598113553088543'),
             { body: commands }
         );
