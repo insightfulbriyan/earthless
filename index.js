@@ -423,13 +423,13 @@ client.on("interactionCreate", async interaction => {
             //GIVE
             else if (comd == "give") {
                 (await interaction.guild.members.fetch(interaction.options.getUser("member").id)).roles.add(interaction.options.getRole("role"))
-                interaction.reply(" ")
+                interaction.reply("** **")
             }
 
             //DELETE
             else if (comd == "delete") {
                 interaction.options.getRole("role").delete()
-                interaction.reply(" ")
+                interaction.reply("** **")
             }
         }
     }
