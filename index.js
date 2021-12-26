@@ -331,7 +331,7 @@ client.on("interactionCreate", async interaction => {
 
     //MUTE 
     else if (interaction.commandName == "mute" && interaction.memberPermissions.has("KICK_MEMBERS")) {
-        var member = interaction.guild.members.fetch(interaction.getUser("user").id).roles
+        var member = interaction.guild.members.fetch(interaction.options.getUser("user").id).roles
         member.add(CONFIG.MUTE_ID)
         setTimeout(() => { member.remove(CONFIG.MUTE_ID) }, CONFIG.MUTE_TIME)
         interaction.reply("**" + interaction.options.getUser("user").displayName.toString() + "** has been muted for 5 minutes.")
