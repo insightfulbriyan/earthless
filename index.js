@@ -122,17 +122,17 @@ client.on("interactionCreate", async interaction => {
 
     //REMIND
     else if (interaction.commandName == "remind") {
-        const auth = interaction.user.createDM(true);
+        const auth = await interaction.user.createDM(true);
         var mins = interaction.options.getNumber("time")
         var remind_time = mins * 60000;
         if (remind_time == "60000") {
             interaction.reply(`I'll remind you in ${mins} minute.`);
-            setTimeout(() => { (auth).send(`**${interaction.options.getString("reason")}** Your timer is over. :timer: `); }, remind_time);
+            setTimeout(() => { auth.send(`**${interaction.options.getString("reason")}** Your timer is over. :timer: `); }, remind_time);
         }
 
         else {
             interaction.reply(`I'll remind you in ${mins} minutes.`);
-            setTimeout(() => { (auth).send(`**${interaction.options.getString("reason")}** Your timer is over :timer:`); }, remind_time);
+            setTimeout(() => { auth.send(`**${interaction.options.getString("reason")}** Your timer is over :timer:`); }, remind_time);
         }
     }
 
