@@ -422,7 +422,7 @@ client.on("interactionCreate", async interaction => {
 
             //GIVE
             else if (comd == "give") {
-                await interaction.guild.members.fetch(interaction.options.getUser("member").id).roles.add(interaction.options.getRole("role"))
+                (await interaction.guild.members.fetch(interaction.options.getUser("member").id)).roles.add(interaction.options.getRole("role"))
             }
 
             //DELETE
