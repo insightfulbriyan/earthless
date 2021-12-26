@@ -429,7 +429,7 @@ client.on("interactionCreate", async interaction => {
             //DELETE
             else if (comd == "delete") {
                 interaction.options.getRole("role").delete()
-                interaction.reply("** **")
+                interaction.reply(`**${interaction.options.getRole("role").name}** was deleted`)
             }
         }
     }
