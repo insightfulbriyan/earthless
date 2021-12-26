@@ -422,14 +422,13 @@ client.on("interactionCreate", async interaction => {
 
             //GIVE
             else if (comd == "give") {
-                interaction.options.getUser("member").roles.add(interaction.options.getRole("role"))
+                await interaction.guild.members.fetch(interaction.options.getUser("user").id).roles.add(interaction.options.getRole("role"))
             }
 
             //DELETE
             else if (comd == "delete") {
                 interaction.options.getRole("role").delete()
             }
-
         }
     }
 
@@ -503,20 +502,20 @@ client.on("interactionCreate", async interaction => {
             message.channel.send(`Hello ${message.author}!`)
         }
     }
-
-
-
-
+    
+    
+    
+    
     //SHUTDOWN
     else if ((message.author == CONFIG.NEONIE_ID || message.author == CONFIG.NASA_ID) && message.content.startsWith('=sd')) {
         message.channel.send('Shutting down...');
         console.log(t)
-
+    
     }
-
-
-
-
+    
+    
+    
+    
     //CHATBOT
     else if (message.channel.id.toString() == CONFIG.AI_ID) {
         if (message.author.bot) return;
