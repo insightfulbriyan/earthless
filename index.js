@@ -164,7 +164,7 @@ client.on("interactionCreate", async interaction => {
 
     //NAME
     else if (interaction.commandName == "name") {
-        interaction.reply(`authotr <@${message.author}>`);
+        interaction.reply(`author <@${interaction.user.id}>`);
     }
 
 
