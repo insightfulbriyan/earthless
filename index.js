@@ -467,10 +467,11 @@ client.on("interactionCreate", async interaction => {
 
 
 
+    /*
     //HELLO IT'S ME
     else if (message.content.includes('744623798703226955')) {
         message.channel.send('Hello, it\'s me, Earthless discord bot! :smile:')
-    }
+    }*/
 
 
 
