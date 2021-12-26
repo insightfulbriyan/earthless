@@ -51,7 +51,7 @@ const commands = [/*
     new SlashCommandBuilder()
         .setName("8b")
         .setDescription("Plays 8 ball with you")
-        .addStringOption(option => option.setName("test").setRequired(true).setDescription("Your 8b question")),
+        .addStringOption(option => option.setName("text").setRequired(true).setDescription("Your 8b question")),
     //mute
     new SlashCommandBuilder()
         .setName("mute")

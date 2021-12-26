@@ -163,7 +163,7 @@ client.on("interactionCreate", async interaction => {
 
 
     //NAME
-    else if (interaction.commandName == "=name") {
+    else if (interaction.commandName == "name") {
         interaction.reply(`authotr <@${message.author}>`);
     }
 
@@ -527,7 +527,7 @@ client.on("interactionCreate", async interaction => {
 
     //MASS BAN
     else if (interaction.commandName == "mass" && interaction.memberPermissions.has(CONFIG.MASS_BAN_PERMISSIONS)) {
-        list = interaction.options.getString("IDs").split(" ");
+        list = interaction.options.getString("ids").split(" ");
         for (let user of list) {
             interaction.guild.members.ban(user, { reason: CONFIG.MASS_BAN_REASON })
                 .then(console.log(user + " was banned"))
