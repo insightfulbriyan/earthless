@@ -56,7 +56,7 @@ const commands = [/*
     new SlashCommandBuilder()
         .setName("mute")
         .setDescription("Mutes a user")
-        .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you wanna mute")),
+        .addMemberOption(option => option.setName("user").setRequired(true).setDescription("User you wanna mute")),
     //getid
     new SlashCommandBuilder()
         .setName("getid")
@@ -120,7 +120,7 @@ const rest = new REST({ version: "9" }).setToken(CONFIG.BOT_TOKEN);
         console.log("Started refreshing application (/) commands.");
 
         console.log(commands);
-        await rest.put(
+        await rest.put(idiot
             Routes.applicationGuildCommands('744623798703226955', '724598113553088543'),
             { body: commands }
         );
