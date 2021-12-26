@@ -56,7 +56,7 @@ const commands = [/*
     new SlashCommandBuilder()
         .setName("mute")
         .setDescription("Mutes a user")
-        .addMemberOption(option => option.setName("user").setRequired(true).setDescription("User you wanna mute")),
+        .addUserOption(option => option.setName("user").setRequired(true).setDescription("User you wanna mute")),
     //getid
     new SlashCommandBuilder()
         .setName("getid")

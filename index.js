@@ -331,9 +331,10 @@ client.on("interactionCreate", async interaction => {
 
     //MUTE 
     else if (interaction.commandName == "mute" && interaction.memberPermissions.has("KICK_MEMBERS")) {
-        interaction.options.getMember("user").roles.add(CONFIG.MUTE_ID)
-        setTimeout(() => { interaction.options.getMember("user").roles.remove(CONFIG.MUTE_ID) }, CONFIG.MUTE_TIME)
-        interaction.reply("**" + interaction.options.getMember("user").displayName.toString() + "** has been muted for 5 minutes.")
+        var member = interaction.guild.members.fetch(interaction.getUser("user").id).roles
+        member.add(CONFIG.MUTE_ID)
+        setTimeout(() => { member.remove(CONFIG.MUTE_ID) }, CONFIG.MUTE_TIME)
+        interaction.reply("**" + interaction.options.getUser("user").displayName.toString() + "** has been muted for 5 minutes.")
     }
 
 
