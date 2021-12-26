@@ -121,7 +121,7 @@ const rest = new REST({ version: "9" }).setToken(CONFIG.BOT_TOKEN);
 
         console.log(commands);
         await rest.put(
-            Routes.applicationGuildCommands('705502539965268018', '725581248755531817'),
+            Routes.applicationGuildCommands('744623798703226955', '724598113553088543'),
             { body: commands }
         );
 

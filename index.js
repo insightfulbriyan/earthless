@@ -549,6 +549,7 @@ client.on("interactionCreate", async interaction => {
 
 
 
+    /*
     //BUMP TIMER
     for (let embed of message.embeds) {
         if (embed.title == 'DISBOARD: The Public Server List') {
@@ -558,7 +559,7 @@ client.on("interactionCreate", async interaction => {
                 setTimeout(() => { message.channel.send('It\'s <@&759772228962353182>! Go to <#724598114882945183> and type `!d bump`'); }, 7200000);
             }
         }
-    }
+    }*/
 });
 
 
