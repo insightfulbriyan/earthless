@@ -479,7 +479,7 @@ client.on("interactionCreate", async interaction => {
 
     //REVIVE
     else if (interaction.commandName == "revive") {
-        var reviver = interaction.options.gerString("dead")
+        var reviver = interaction.options.getString("dead")
 
         if (reviver == "me") {
             interaction.reply("You were revived.")
