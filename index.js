@@ -181,7 +181,7 @@ client.on("interactionCreate", async interaction => {
             return;
         }
 
-        interaction.reply(`${message.author} here is your food. ${food[between(0, 95)]}`);
+        interaction.reply(`${interaction.user} here is your food. ${food[between(0, 95)]}`);
     }
 
 
