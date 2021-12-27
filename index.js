@@ -251,9 +251,8 @@ client.on("interactionCreate", async interaction => {
 
     //SAY
     else if (interaction.commandName == "say" && interaction.channel.id.valueOf() == CONFIG.SAY_FROM_ID) {
-        interaction.options.getString("text")
         const send_channel = client.channels.cache.find(channel => channel.id === CONFIG.SAY_TO_ID)
-        send_channel.send(message.content.split("=say ")[1])
+        send_channel.send(interaction.options.getString("text"))
         interaction.reply("Your message has been sent!")
     }
 
@@ -310,19 +309,19 @@ client.on("interactionCreate", async interaction => {
         const text = interaction.options.getString("text")
         var answer_rnd = ["Yes!", "No", "Certainly", "No way!", between(0, 100) + "% yes", between(0, 100) + "% no", "No idea, google it", "DATABASE_ERROR", "I don\'t have access to data", "i DON\'T THINK SO"]
         var rndn_8b = between(0, 9)
-        console.log(rndn_8b)
+        await interaction.reply(text)
 
         if (text.length > CONFIG.BB_TLDR && between(0, CONFIG.BB_TLDR_PROB) > CONFIG.BB_TLDR_PROB_VALUE) {
-            interaction.reply("TL:DR, i don't have a whole day to reat this")
+            interaction.followUp("TL:DR, i don't have a whole day to reat this")
         }
 
         else if (rndn_8b == 9) {
-            interaction.reply(answer_rnd[9])
+            interaction.followUp(answer_rnd[9])
             setTimeout(() => { interaction.followUp("sry caps"); }, CONFIG.BB_CAPS);
         }
 
         else {
-            interaction.reply(answer_rnd[rndn_8b]);
+            interaction.followUp(answer_rnd[rndn_8b]);
         }
     }
 
