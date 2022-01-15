@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const CONFIG = require("./config.json");
 const exec = require("child_process").exec;
 const { REST } = require("@discordjs/rest");
+const request = require('request-promise-native');
 const { Routes } = require("discord-api-types/v9");
 
 function between(min, max) {
@@ -214,6 +215,26 @@ client.on("interactionCreate", async interaction => {
         interaction.reply({ embeds: [embed_mem] });
     }
 
+
+
+
+    else if (interaction.commandName == "aichat") {
+        const options = {
+            method: 'GET',
+            url: CONFIG.chat.url,
+            qs: {
+                bid: CONFIG.chat.bid,
+                key: CONFIG.chat.key,
+                uid: CONFIG.chat.uid,
+                msg: interaction.options.getString("talk")
+            },
+            json: true
+        };
+        let reply = await request(options);
+        if (reply) {
+            interaction.reply(reply.cnt)
+        }
+    }
 
 
 

@@ -66,6 +66,11 @@ const commands = [/*
     new SlashCommandBuilder()
         .setName("chance")
         .setDescription("Gives you very accurate chance of given event happening"),
+    //AI chat
+    new SlashCommandBuilder()
+        .setName("aichat")
+        .setDescription("Talk to computer")
+        .addStringOption(option => option.setName("talk").setRequired(true).setDescription("Text to be passed to comupter to reply")),
     //role
     new SlashCommandBuilder()
         .setName("role")
@@ -122,6 +127,7 @@ const rest = new REST({ version: "9" }).setToken(CONFIG.BOT_TOKEN);
         console.log(commands);
         await rest.put(
             Routes.applicationGuildCommands('744623798703226955', '724598113553088543'),
+            //Routes.applicationGuildCommands('705502539965268018', '725581248755531817'),
             { body: commands }
         );
 
