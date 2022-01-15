@@ -232,7 +232,7 @@ client.on("interactionCreate", async interaction => {
         };
         let reply = await request(options);
         if (reply) {
-            interaction.reply(reply.cnt)
+            interaction.reply(`**Q:** ${interaction.options.getString("talk")}\n**A:** ${reply.cnt}`)
         }
     }
 
