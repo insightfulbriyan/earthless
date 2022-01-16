@@ -588,6 +588,7 @@ client.on("interactionCreate", async interaction => {
 
 
 client.on("message", message => {
+    console.log(message)
     if (message.author.bot) { return; }
     else if (!message.guild) { return; }
     else { console.log(message) }
