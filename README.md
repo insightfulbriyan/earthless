@@ -1,6 +1,6 @@
 # Earthless
 
-**Earthless** is Discord bot, that's specifically created for Earthless discord servr. [Invite.](https://discord.gg/9gD293WjHs)
+**Earthless** is Discord bot, that's specifically created for Earthless discord server. [Invite.](https://discord.gg/9gD293WjHs)
 
 ## Installing
 To start using the bot:
@@ -38,7 +38,7 @@ VARIABLE | DEFAULT VALUE | EXPLANATION
 `BOT_STATUS_TYPE` | PLAYING | Bot's activity while online [More option](https://discord.js.org/#/docs/main/stable/typedef/ActivityType)
 `BOT_STATUS_STATUS` | =help | Bot's status
 `LOCK_ROLE_ID` | 724598113817591884 | Role to remove send message permissions on lockdown
-`ùrl` | http://api.brainshop.ai/get?bid=154913&key=T0nZutKJGJSeQZAU&uid=[uid]&msg=[msg] | URL of brainshop chatbot
+`url` | http://api.brainshop.ai/get?bid=154913&key=T0nZutKJGJSeQZAU&uid=[uid]&msg=[msg] | URL of brainshop chatbot
 `bid` | 154913 | Bot ID of brainshop chatbot
 `key` | T0nZutKJGJSeQZAU | API key
 `uid` | chatbot | User ID of brainshop chatbot
@@ -46,4 +46,5 @@ VARIABLE | DEFAULT VALUE | EXPLANATION
 `MASS_BAN_REASON` | Because | Reason for mas ban **FUTURE**
 
 
-7. Then run `node index.js`
+7. Then run `node comreg.js` to register slash commands.
+8. To run the bot, execute `node index.js`.
