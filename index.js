@@ -598,7 +598,7 @@ client.on("message", message => {
                 bid: CONFIG.chat.bid,
                 key: CONFIG.chat.key,
                 uid: CONFIG.chat.uid,
-                msg: interaction.options.getString("talk")
+                msg: message.content.toString()
             },
             json: true
         };
