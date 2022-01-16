@@ -586,13 +586,11 @@ client.on("interactionCreate", async interaction => {
 
 
 
-client.on("message", message => {
-    console.log(message)
+client.on("messageCreate", async message => {
     if (message.author.bot) { return; }
     else if (!message.guild) { return; }
-    else { console.log(message) }
     if (message.channel.id.toString() == CONFIG.AI_ID) {
-        message.channel.startTyping(true);
+        message.channel.sendTyping();
         const options = {
             method: 'GET',
             url: CONFIG.chat.url,
@@ -604,8 +602,7 @@ client.on("message", message => {
             },
             json: true
         };
-        let reply = request(options);
-        message.channel.startTyping(false);
+        let reply = await request(options);
         if (reply) {
             message.channel.send(reply.cnt)
         }
