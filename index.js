@@ -590,6 +590,7 @@ client.on("interactionCreate", async interaction => {
 client.on("message", message => {
     if (message.author.bot) { return; }
     else if (message.channel.id == CONFIG.AI_ID) {
+        message.channel.startTyping(true);
         const options = {
             method: 'GET',
             url: CONFIG.chat.url,
@@ -602,6 +603,7 @@ client.on("message", message => {
             json: true
         };
         let reply = await request(options);
+        message.channel.startTyping(false);
         if (reply) {
             message.channel.send(reply.cnt)
         }
