@@ -22,7 +22,6 @@ client.on("ready", () => {
         url: CONFIG.BOT_STATUS_URL
     });
 });
-client.util = require("./util");
 
 
 var gtn_rndn = 0;
@@ -605,7 +604,7 @@ client.on("message", message => {
             },
             json: true
         };
-        let reply = await request(options);
+        let reply = request(options);
         message.channel.startTyping(false);
         if (reply) {
             message.channel.send(reply.cnt)
