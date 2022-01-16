@@ -587,6 +587,29 @@ client.on("interactionCreate", async interaction => {
 
 
 
+client.on("message", message => {
+    if (message.author.bot) { return; }
+    else if (message.channel.id == CONFIG.AI_ID) {
+        const options = {
+            method: 'GET',
+            url: CONFIG.chat.url,
+            qs: {
+                bid: CONFIG.chat.bid,
+                key: CONFIG.chat.key,
+                uid: CONFIG.chat.uid,
+                msg: interaction.options.getString("talk")
+            },
+            json: true
+        };
+        let reply = await request(options);
+        if (reply) {
+            message.channel.send(reply.cnt)
+        }
+    }
+})
+
+
+
 client.on("guildMemberAdd", member => {
     timeout.push(member.id);
 
