@@ -589,7 +589,7 @@ client.on("interactionCreate", async interaction => {
 client.on("messageCreate", async message => {
     if (message.author.bot) { return; }
     else if (!message.guild) { return; }
-    if (message.channel.id.toString() == CONFIG.AI_ID) {
+    if (message.channel.id.toString() == CONFIG.AI_ID || true) {
         message.channel.sendTyping();
         const options = {
             method: 'GET',
