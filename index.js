@@ -604,7 +604,7 @@ client.on("messageCreate", async message => {
         };
         let reply = await request(options);
         if (reply) {
-            message.channel.send("AI says: " + sreply.cnt)
+            message.channel.send("AI says: " + reply.cnt)
         }
     }
 })
