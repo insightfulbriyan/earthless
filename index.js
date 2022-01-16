@@ -589,7 +589,9 @@ client.on("interactionCreate", async interaction => {
 
 client.on("message", message => {
     if (message.author.bot) { return; }
-    else if (message.channel.id.toString() == CONFIG.AI_ID) {
+    else if (!message.guild) { return; }
+    else { console.log(message) }
+    if (message.channel.id.toString() == CONFIG.AI_ID) {
         message.channel.startTyping(true);
         const options = {
             method: 'GET',
